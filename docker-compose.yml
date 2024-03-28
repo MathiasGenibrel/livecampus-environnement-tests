@@ -22,6 +22,8 @@ services:
   livecampus-mongo-db:
     container_name: livecampus-mongo-db
     image: mongo:7.0.7-jammy
+    volumes:
+      - ./.data:/data/db
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: '${MONGO_ROOT_USERNAME}'
