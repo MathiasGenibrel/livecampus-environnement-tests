@@ -20,5 +20,4 @@ jobs:  # Définit les différents travaux à effectuer.
 
       # Étape 3 : Exécuter Docker Compose pour lancer les conteneurs
       - name: Run Docker Compose
-        run: |
-          docker-compose --env-file .env -f docker-compose.yml -p livecampus-environnement-tests up --force-recreate -d
+        run: docker-compose --env-file .env -f docker-compose.yml -p livecampus-environnement-tests up --force-recreate -d
