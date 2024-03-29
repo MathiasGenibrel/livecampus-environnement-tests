@@ -3,7 +3,7 @@ name: Build and Run Docker Compose
 on:
   push:
     branches:
-      - main  
+      - main  # Modifier si votre branche principale a un nom différent
 
 jobs:
   build:
@@ -13,20 +13,17 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Install Docker
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y docker.io
+    # Vérifier si Node.js est déjà installé
+    - name: Check if Node.js is installed
+      run: node --version
+      continue-on-error: true
+      id: check_node
 
-    - name: Install Docker Compose
-      run: |
-        sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-        sudo chmod +x /usr/local/bin/docker-compose
-
-    - name: Set up environment variables
-      uses: actions/setup-node@v2
-      with:
-        node-version: '20.11.1'  
+    # Vérifier si Docker est déjà installé
+    - name: Check if Docker is installed
+      run: docker --version
+      continue-on-error: true
+      id: check_docker
 
     - name: Install npm dependencies
       run: npm install
