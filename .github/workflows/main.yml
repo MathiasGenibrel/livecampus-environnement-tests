@@ -18,13 +18,7 @@ jobs:  # Définit les différents travaux à effectuer.
       - name: Install npm dependencies
         run: npm install
 
-       # Étape 3 : Exécuter Docker Compose pour lancer les conteneurs
+
+      # Étape 3 : Exécuter Docker Compose pour lancer les conteneurs
       - name: Run Docker Compose
-        run: |
-          docker-compose \
-            -e WEB_EXPOSE_PORT=${{ secrets.WEB_EXPOSE_PORT }} \
-            -e WEB_PORT=${{ secrets.WEB_PORT }} \
-            -e DATABASE_URL=${{ secrets.DATABASE_URL }} \
-            -f docker-compose.yml \
-            -p livecampus-environnement-tests \
-            up --force-recreate -d
+        run:  docker-compose -e WEB_EXPOSE_PORT=${{ secrets.WEB_EXPOSE_PORT }} -e WEB_PORT=${{ secrets.WEB_PORT }} -e DATABASE_URL=${{ secrets.DATABASE_URL }} -f docker-compose.yml -p livecampus-environnement-tests up --force-recreate -d
