@@ -1,9 +1,8 @@
-import { FC } from "react";
 import { TaskAction } from "../action/TaskAction";
-import { Method } from "../../types/method";
 import { revalidatePath } from "next/cache";
+import { FC } from "react";
 
-export const CreateTaskForm: FC = async () => {
+export const CreateTaskForm: FC = () => {
   const actionHandler = async (formData: FormData) => {
     "use server";
 
@@ -18,7 +17,6 @@ export const CreateTaskForm: FC = async () => {
   return (
     <form
       action={actionHandler}
-      method={Method.POST}
       className={"flex w-full mx-16 gap-8 lg:max-w-screen-md"}
     >
       <input type="text" name="task-name" className={"border w-full px-2"} />
