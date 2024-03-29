@@ -3,7 +3,7 @@ name: Build and Run Docker Compose
 on:
   push:
     branches:
-      - main  # Modifier si votre branche principale a un nom différent
+      - main  
 
 jobs:
   build:
@@ -12,18 +12,6 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-
-    # Vérifier si Node.js est déjà installé
-    - name: Check if Node.js is installed
-      run: node --version
-      continue-on-error: true
-      id: check_node
-
-    # Vérifier si Docker est déjà installé
-    - name: Check if Docker is installed
-      run: docker --version
-      continue-on-error: true
-      id: check_docker
 
     - name: Install npm dependencies
       run: npm install
