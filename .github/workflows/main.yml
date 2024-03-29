@@ -1,21 +1,24 @@
-name: Build and Run Docker Compose
+name: Build and Run Docker Compose  # Le nom de l'action, affiché dans l'interface GitHub Actions.
 
-on:
-  push:
-    branches:
-      - main  
+on:  # Définit quand déclencher l'action.
+  push:  # L'action est déclenchée lorsqu'un push est effectué.
+    branches:  # Définit les branches sur lesquelles l'action est déclenchée.
+      - main  # L'action est déclenchée uniquement lorsqu'un push est effectué sur la branche "main".
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+jobs:  # Définit les différents travaux à effectuer.
+  build:  # Nom du travail.
+    runs-on: ubuntu-latest  # Spécifie le système d'exploitation à utiliser pour exécuter les travaux. Ici, c'est Ubuntu.
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+    steps:  # Définit les étapes à suivre pour accomplir le travail.
+      # Étape 1 : Récupérer le dépôt
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Install npm dependencies
-      run: npm install
+      # Étape 2 : Installer les dépendances npm
+      - name: Install npm dependencies
+        run: npm install
 
-    - name: Run Docker Compose
-      run: |
-        docker-compose --env-file .env -f docker-compose.yml -p livecampus-environnement-tests up --force-recreate -d
+      # Étape 3 : Exécuter Docker Compose pour lancer les conteneurs
+      - name: Run Docker Compose
+        run: |
+          docker-compose --env-file .env -f docker-compose.yml -p livecampus-environnement-tests up --force-recreate -d
